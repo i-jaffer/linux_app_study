@@ -45,7 +45,6 @@ int main()
 		*p = 10000;
 		var = 10;
 		printf("child:*p=%d var=%d\n",*p,var);
-		ret = munmap(p,4);
 	} else {
 		sleep(1);
 		printf("child:*p=%d var=%d\n",*p,var);
