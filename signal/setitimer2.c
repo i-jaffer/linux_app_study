@@ -4,7 +4,9 @@
 #include <sys/time.h>
 #include <signal.h>
 
-void sign_alarm_callback(int signao)
+typedef void (*sighandler_t)(int);
+
+void sign_alarm_callback(int signo)
 {
 	printf("sign alarm \n");
 }
@@ -14,8 +16,13 @@ int main()
 	struct itimerval new_value;
 	struct itimerval old_value;
 	int ret = 0;
+	sighandler_t handler;
 
-	signal(SIGALRM,sign_alarm_callback);	//注册SIGALRM回调函数
+	handler = signal(SIGALRM,sign_alarm_callback);	//注册SIGALRM回调函数
+	if(handler == SIG_ERR) {
+		perror("signal error");
+		exit(-1);
+	}
 
 	new_value.it_interval.tv_sec = 3;
 	new_value.it_interval.tv_usec = 0;
