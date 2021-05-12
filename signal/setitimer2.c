@@ -8,7 +8,7 @@ typedef void (*sighandler_t)(int);
 
 void sign_alarm_callback(int signo)
 {
-	printf("sign alarm \n");
+	printf("sign alarm ,signal %d\n",signo);	//signo:signal serial number
 }
 
 int main()
