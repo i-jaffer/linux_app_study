@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
+//使用匿名映射区完成通讯
 #if 1		//仅适用于linux操作环境
 int main()
 {
