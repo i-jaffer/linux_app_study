@@ -22,6 +22,7 @@ void *pthread_func3(void *arg)
                 printf("thread 3: I'm alive!\n");
                 sleep(1);
                 /* pthread_cancel 需要在程序中有取消点(或者调用系统函数，由系统函数内部有取消点) */
+                pthread_testcancel();           /* 系统调用 */
         }
         pthread_exit((void *)333);
 }
