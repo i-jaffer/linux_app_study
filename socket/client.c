@@ -29,7 +29,27 @@ int main(int argc, char *argv[])
         if(fd_client == -1)
                 sys_error("socket error");
         
-        /* 可使用系统默认分配ip地址,所以无需使用bind配置 */
+        /* 可使用系统默认分配ip地址和端口,所以无需使用bind配置 */
+#if 0
+        /* 2.绑定IP和端口号 */
+        struct sockaddr_in sockaddr;
+        sockaddr.sin_family = AF_INET;
+        sockaddr.sin_port = htons(1314);
+        ret = inet_pton(AF_INET, "127.1.2.11", &sockaddr.sin_addr.s_addr);
+        if(ret <= 0) {
+                if(ret = 0) {
+                        fprintf(stderr,"Not in presentation format");
+                        exit(-1);
+                } else {
+                        sys_error("inet_pton error");
+                }
+        }
+        //sockaddr.sin_addr.s_addr = (INADDR_ANY);
+        ret = bind(fd_client, (struct sockaddr *)&sockaddr, sizeof(sockaddr));
+        if(ret == -1)
+                sys_error("bind error");
+
+#endif
 
         /* 2.与服务器建立连接 */
         struct sockaddr_in sockaddr_client;

@@ -57,6 +57,12 @@ int main()
         if(fd_client == -1)
                 sys_error("accept error");
 
+        /* 打印输出客户端信息 */
+        unsigned char client_ip_buf[BUFSIZ];
+        printf("Client IP:%s Client Port:%d\n",
+               inet_ntop(AF_INET, &sockaddr_client.sin_addr.s_addr, client_ip_buf, sizeof(client_ip_buf)),
+               ntohs(sockaddr_client.sin_port));
+
         /* 5.读取客户端数据 */
         char buf[1024];
         ret = read(fd_client, buf, sizeof(buf));
