@@ -86,7 +86,7 @@ int main()
         ret = sem_init(&sem_product, 0, 0);
         if(ret == -1)
                 sys_error("sem_init");
-        sem_init(&sem_blank, 0, 5);
+        ret = sem_init(&sem_blank, 0, 5);
         if(ret == -1)
                 sys_error("sem_init");
 
