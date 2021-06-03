@@ -52,6 +52,10 @@ int main()
 
         /* create socket */
         fd_server = Socket(AF_INET, SOCK_STREAM, 0);
+
+        /* set ip addr is reusable */
+        int opt = 1;
+        setsockopt(fd_server, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
         
         /* bind ip and port message */
         struct sockaddr_in server_sockaddr;
