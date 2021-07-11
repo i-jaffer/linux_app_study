@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+UNRECE_FIFO	client.c	7;"	d	file:
+UNRECE_FIFO	server.c	8;"	d	file:
+client_msg_list	server.c	/^client_msg_typedef client_msg_list[100] = {0};$/;"	v
+client_msg_struct	server.c	/^typedef struct client_msg_struct {$/;"	s	file:
+client_msg_typedef	server.c	/^}client_msg_typedef;$/;"	t	typeref:struct:client_msg_struct	file:
+client_register	server.c	/^int client_register(char *msg)$/;"	f
+client_sendmsg	server.c	/^int client_sendmsg(char *src, char *dest, char *data)$/;"	f
+client_unregister	server.c	/^int client_unregister(char *msg)$/;"	f
+id	server.c	/^        char id[4];$/;"	m	struct:client_msg_struct	file:
+main	client.c	/^int main()$/;"	f
+main	server.c	/^int main()$/;"	f
+online_timestamp	server.c	/^        int online_timestamp;$/;"	m	struct:client_msg_struct	file:
+status	server.c	/^        char status;$/;"	m	struct:client_msg_struct	file:
+sys_error	client.c	/^void sys_error(char *str)$/;"	f
+sys_error	server.c	/^void sys_error(char *str)$/;"	f
