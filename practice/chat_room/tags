@@ -4,18 +4,26 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-UNRECE_FIFO	client.c	7;"	d	file:
+UNRECE_FIFO	client.c	8;"	d	file:
 UNRECE_FIFO	server.c	8;"	d	file:
+client_init	client.c	/^int client_init(client_msg_typedef *client, char *dest_id)$/;"	f
 client_msg_list	server.c	/^client_msg_typedef client_msg_list[100] = {0};$/;"	v
+client_msg_struct	client.c	/^typedef struct client_msg_struct {$/;"	s	file:
 client_msg_struct	server.c	/^typedef struct client_msg_struct {$/;"	s	file:
+client_msg_typedef	client.c	/^}client_msg_typedef;$/;"	t	typeref:struct:client_msg_struct	file:
 client_msg_typedef	server.c	/^}client_msg_typedef;$/;"	t	typeref:struct:client_msg_struct	file:
-client_register	server.c	/^int client_register(char *msg)$/;"	f
-client_sendmsg	server.c	/^int client_sendmsg(char *src, char *dest, char *data)$/;"	f
-client_unregister	server.c	/^int client_unregister(char *msg)$/;"	f
+client_register	client.c	/^int client_register(client_msg_typedef *client, int fd_fifo)$/;"	f
+client_unregister	client.c	/^int client_unregister(client_msg_typedef *client, int fd_fifo)$/;"	f
+data	client.c	/^        char data[100];$/;"	m	struct:client_msg_struct	file:
+dest_id	client.c	/^        char dest_id[4];$/;"	m	struct:client_msg_struct	file:
 id	server.c	/^        char id[4];$/;"	m	struct:client_msg_struct	file:
 main	client.c	/^int main()$/;"	f
 main	server.c	/^int main()$/;"	f
 online_timestamp	server.c	/^        int online_timestamp;$/;"	m	struct:client_msg_struct	file:
+register_client	server.c	/^int register_client(char *msg)$/;"	f
+sendmsg_by_client	server.c	/^int sendmsg_by_client(char *src, char *dest, char *data)$/;"	f
+src_id	client.c	/^        char src_id[4];$/;"	m	struct:client_msg_struct	file:
 status	server.c	/^        char status;$/;"	m	struct:client_msg_struct	file:
 sys_error	client.c	/^void sys_error(char *str)$/;"	f
 sys_error	server.c	/^void sys_error(char *str)$/;"	f
+unregister_client	server.c	/^int unregister_client(char *msg)$/;"	f

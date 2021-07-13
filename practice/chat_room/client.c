@@ -19,6 +19,12 @@ void sys_error(char *str)
         exit(-1);
 }
 
+/*
+ * @brief client init
+ * @param *client: client message struct
+ * @param *dest_id: data receiver id
+ * @retval 0:success -1:failed
+ */
 int client_init(client_msg_typedef *client, char *dest_id)
 {
         int ret = 0;
@@ -48,24 +54,48 @@ out:
         return ret;
 }
 
+/*
+ * @brief register client to server
+ * @param *client: client message struct
+ * @param fd_fifo: server file specified
+ * @retval 0:success -1:failed
+ */
 int client_register(client_msg_typedef *client, int fd_fifo)
 {
+        int ret = 0;
         char buf[100];
-        buf[0] = 0;
+
+        buf[0] = '0';
         strncpy(&buf[1], client->src_id, 4);
         strncpy(&buf[5], client->dest_id, 4);
 
-        return (write(fd_fifo, buf, 9));
+        ret = write(fd_fifo, buf, 9);
+        if(ret == -1)
+                sys_error("client_register write error");
+
+        return ret;
 }
 
+/*
+ * @brief unregister client to server
+ * @param *client: client message struct
+ * @param fd_fifo: server file specified
+ * @retval 0:success -1:failed
+ */
 int client_unregister(client_msg_typedef *client, int fd_fifo)
 {
+        int ret = 0;
         char buf[100];
-        buf[0] = 3;
+
+        buf[0] = '1';
         strncpy(&buf[1], client->src_id, 4);
         strncpy(&buf[5], client->dest_id, 4);
 
-        return (write(fd_fifo, buf, 9));
+        ret = write(fd_fifo, buf, 9);
+        if(ret == -1)
+                sys_error("client_unregister write error");
+
+        return ret;
 }
 
 int main()
@@ -80,9 +110,12 @@ int main()
         }
 
         printf("========== client launch ========\n");
+
         char destid[4] = {'A','B','C','D'};
         client_init(&client_msg, destid);
         client_register(&client_msg, fd_txfifo);
+
+        while(1);
 
         //client_unregister(&client_msg, fd_txfifo);
         close(fd_txfifo);
